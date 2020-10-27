@@ -10,6 +10,10 @@ const generateMarkdown = require("./utils/generateMarkdown");
 // Promisify our writeFile function
 const writeFileAsync = util.promisify(fs.writeFile);
 
+//  Global badgeURL that will be used in generateREADME function
+let badgeURL = "";
+
+// Defining Prompt function
 function promptUser() {
   return inquirer.prompt([
     {
@@ -44,27 +48,49 @@ function promptUser() {
       message: "What command should be run to install dependencies?"
     },
     {
-        type: "input",
-        name: "tests",
-        message: "What command should be run to run tests?"
-      },
-      {
-        type: "input",
-        name: "usage",
-        message: "What does the user need to know about using the repo?"
-      },
-      {
-        type: "input",
-        name: "contribute",
-        message: "What does the user need to know about contributing to the repo?"
-      }
+      type: "input",
+      name: "tests",
+      message: "What command should be run to run tests?"
+    },
+    {
+      type: "input",
+      name: "usage",
+      message: "What does the user need to know about using the repo?"
+    },
+    {
+      type: "input",
+      name: "contribute",
+      message: "What does the user need to know about contributing to the repo?"
+    }
   ]);
 }
 
+
+
+// Defining function that grab answers from our answer object that wa created with the inquiery prompts, and display them on a README file
+// I'm beggining this function with a conditional that gives variable badgeURL the URL to the chosen license
 function generateREADME(answers) {
-return `
-# ${answers.title}
-![GitHub license] ${answers.license}
+  switch (answers.license) {
+    case "MIT":
+      badgeURL = "![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)";
+      break;
+    case "APACHE 2.0":
+      badgeURL = "![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)";
+      break;
+    case "GPL 3.0":
+      badgeURL = "![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)";
+      break;
+    case "BSD 3":
+      badgeURL = "![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)";
+      break;
+    default:
+      badgeURL = "";
+  }
+
+  return `
+# ${generateMarkdown(answers.title)}
+${badgeURL}
+// Coming out as undefined
 
 ## Description
 
@@ -127,9 +153,10 @@ async function init() {
     await writeFileAsync("README.md", html);
 
     console.log("Generating README...");
-  } catch(err) {
+  } catch (err) {
     console.log(err);
   }
 }
 
+// Calling init function
 init();
