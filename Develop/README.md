@@ -1,13 +1,11 @@
 
-# # undefined
-
-
-![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)
+# Good ReadMe Generator
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 // Coming out as undefined
 
 ## Description
 
-jsncncndkjcdcj
+This application allows the user to quickly and easily generate a proper project README file through a series of prompted questions on the terminal. 
 
 ## Table of Contents
 
@@ -32,15 +30,15 @@ npm install
 
 ## Usage
 
-cjsdncjd
+To run the application the user will have to install all dependencies first. It contains a package.json that lists the dependent programs.
 
 ## License
 
-This project is licensed under the GPL 3.0 license.
+This project is licensed under the MIT license.
 
 ## Contributing
 
-ndjsnxs
+To contribute to the repo please follow Contributor Code of Conduct(https://www.contributor-covenant.org/version/2/0/code_of_conduct/code_of_conduct.txt)  
 
 ## Tests
 
